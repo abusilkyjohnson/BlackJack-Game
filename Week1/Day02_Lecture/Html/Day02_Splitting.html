@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Day 02: Splitting Strings</title>
+    <link rel="stylesheet" href="..\..\..\Xtra\Styles\coursestyles.css">
+    <link rel="stylesheet" href="..\..\..\Xtra\Styles\prism.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script> -->
+</head>
+<body>
+    <div class="sidenav">
+        <a href="..\..\..\PG2_CourseMaterials.html">Home</a>
+
+        <div class="header"><b>Lab</b></div>
+        <a href="..\..\Lab1\Html\Lab1.html">Lab 1: Histogram</a>
+
+        <div class="header"><b>Day 01: Methods</b></div>
+        <a href="..\..\Day01_Lecture\Slides\PG2_01_Methods.pdf" target="_blank" rel="noopener noreferrer">[Lecture Slides]</a>
+        <a href="..\..\Day01_Lecture\Html\Day01_Methods.html">Methods Overview</a>
+
+        <div class="header2"><b>Parameters</b></div>
+        <a href="..\..\Day01_Lecture\Html\Day01_MethodsByValue.html" class="indent">By Value</a>
+        <a href="..\..\Day01_Lecture\Html\Day01_MethodsByRef.html" class="indent">By Reference</a>
+        <a href="..\..\Day01_Lecture\Html\Day01_MethodsOutParam.html" class="indent">Out parameters</a>
+        <a href="..\..\Day01_Lecture\Html\Day01_MethodsOptionalParam.html" class="indent">Optional</a>
+
+        <div class="header"><b>Day 02: Arrays and Lists</b></div>
+        <a href="..\Slides\PG2_02_Lists.pdf" target="_blank" rel="noopener noreferrer">[Lecture Slides]</a>
+        <a href="Day02_Arrays.html">Arrays Overview</a>
+        <a href="Day02_ArraysProsCons.html">Arrays Pros/Cons</a>
+        <a href="Day02_Lists.html">Lists</a>
+        <a href="Day02_ListsCount.html">Lists: Count and Capacity</a>
+        <a href="Day02_ListsLooping.html">Lists: Looping</a>
+        <a href="Day02_ListsRemoving.html">Lists: Removing</a>
+        <a href="Day02_ListsCloning.html">Lists: Cloning</a>
+
+        <div class="header"><b>Day 02: Splitting Strings</b></div>
+        <a href="..\Slides\PG2_02_SplittingStrings.pdf" target="_blank" rel="noopener noreferrer">[Lecture Slides]</a>
+        <a href="Day02_Splitting.html" class="active">Splitting Strings</a>
+        <a href="Day02_MultiDelims.html">Multiple Delimiters</a>
+
+        <div class="header"><b>Day 03: Dictionaries</b></div>
+        <a href="..\..\Day03_Lecture\Slides\PG2_03_Dictionaries.pdf" target="_blank" rel="noopener noreferrer">[Lecture Slides]</a>
+        <a href="..\..\Day03_Lecture\Html\Day03_Dictionaries.html">Dictionaries</a>
+        <a href="..\..\Day03_Lecture\Html\Day03_CreatingAdding.html">Creating and Adding</a>
+        <a href="..\..\Day03_Lecture\Html\Day03_Looping.html">Looping</a>
+        <a href="..\..\Day03_Lecture\Html\Day03_Removing.html">Removing</a>
+        <a href="..\..\Day03_Lecture\Html\Day03_CheckingKeys.html">Checking Keys</a>
+        <a href="..\..\Day03_Lecture\Html\Day03_UpdatingValues.html">Updating Values</a>
+        <p></p><br>
+    </div> 
+    <div class="main">
+        <H1>Day 02: Splitting Strings</H1>
+        A common practice to store multiple values in one variable is to use a string and store each value inside the string.<br>
+        This is called <strong>comma-separated values</strong> or <strong>CSV</strong>.<br>
+        To keep the data separated inside the string, you use a char or string as a separator often called a <strong>delimiter</strong>.
+        <br>Even though it is called comma-separated values, you are not required to use a common. You can use any character or series of characters that are <strong>not</strong> part of the data.
+        For instance, if the data contains commas, then you can't use a comma as a delimiter.
+        <p>
+            <iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/5f197408-9496-4376-b518-b3e8a3ac6593?autoplay=false&showinfo=true" allowfullscreen style="border:none;"></iframe>
+        </p>
+        
+        <h2>Examples</h2>
+        The string class has a method called <code class="language-csharp">Split</code>. There are many overloads so pick one that fits your scenario.<br>
+        The <code class="language-csharp">Split</code> method always returns a string array.
+        <pre><code class="language-csharp">string supersCSV = "Thor|Captain America|Iron Man";
+char delimiter = '|';
+string[] supers = supersCSV.Split(delimiter);</code></pre>
+        In this example, <strong>|</strong> is our delimiter that separates the data inside of supersCSV.
+        <p>
+            <iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/8695276b-089b-40a0-b66f-b3c63d28da7d?autoplay=false&showinfo=true" allowfullscreen style="border:none;"></iframe>
+        </p>
+
+        
+        <h2>Challenges!</h2>
+        
+        <div class="tryit">
+            <H3>Try it!</H3>
+            <ol>
+                <li>Split the string</li>
+                <li>Print out the array that Split returns.</li>
+            </ol>
+            <p>
+                <iframe frameBorder="0" height="450px"
+                    src="https://onecompiler.com/embed/csharp/3yc85wx5p?hideNew=true&hideLanguageSelection=true&hideTitle=true&theme=dark&hideStdin=true" width="100%"></iframe>
+            </p>
+            <button type="button" class="collapsible">Solution</button>
+            <div class="content">
+                <pre><code class="language-csharp">public static void Main(string[] args)
+{
+    string data = "Batman;The Dark Knight;The Caped Crusader";
+    string[] names = data.Split(';');
+    foreach(string name in names)
+        Console.WriteLine(name);
+}</code></pre>      
+            </div>
+        </div>
+        <h2>Extra Challenges!</h2>
+        <p>
+            <iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/d4d82a89-ab3b-4f0f-974f-d22a69bcfcf3?autoplay=false&showinfo=true" allowfullscreen style="border:none;"></iframe>
+        </p>
+
+    </div>
+    <script src="..\..\..\Xtra\Styles\prism.js"></script>
+    <script src="..\..\..\Xtra\Styles\collapsible.js"></script>
+</body>
+</html>
