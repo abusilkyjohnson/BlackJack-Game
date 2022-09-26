@@ -6,6 +6,7 @@ namespace Day01
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Top of the morning lads");
             Console.ReadKey();
         }
 
