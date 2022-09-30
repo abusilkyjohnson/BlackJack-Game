@@ -12,21 +12,6 @@ namespace PG2Input
 {
     public static class Input
     {
-        public static void ReadString()
-        {
-            ReadString();
-        }
-
-        public static void ReadChoice()
-        {
-            ReadChoice();
-        }
-
-        public static void ReadInteger()
-        {
-            ReadInteger();
-        }
-          
 
         //Part A-2: GetInput
         //Create a method called GetInput that will ask the user to input something. The method 
