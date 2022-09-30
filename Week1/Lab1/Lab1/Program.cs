@@ -25,6 +25,28 @@ namespace Lab1
             //should be a simple while loop that loops while the menu selection is NOT exit. Inside
             //the while loop, you should 1) call GetMenuChoice to show the menu and get the
             //user’s menu selection. 2) use a switch statement that has logic for each menu option.
+
+            int menuChoice = 1;
+            string[] mainMenu = new string[] { "1. Taco", "2. Chips", "3. Fish", "4. Exit" };
+
+            while (menuChoice != 4)
+            {
+                Input.GetMenuChoice("", mainMenu, out menuChoice);
+                switch (menuChoice)
+                {
+                    case 1:
+                        Console.WriteLine("Taco");
+                        break;
+                    case 2:
+                        Console.WriteLine("Chips");
+                        break ;
+                    case 3:
+                        Console.WriteLine("Fish");
+                        break;
+                     
+                }break;
+            }
+            
         }
     }
 }
