@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using Microsoft.VisualBasic.FileIO;
 using System.Runtime.Intrinsics.X86;
 using PG2Input;
+using System.Collections.Generic;
 
 namespace Lab1
 {
@@ -26,9 +27,7 @@ namespace Lab1
             //the while loop, you should 1) call GetMenuChoice to show the menu and get the
             //user’s menu selection. 2) use a switch statement that has logic for each menu option.
 
-            int menuChoice = 1;
-            string[] mainMenu = new string[] { "1. Show Speech", "2. Only Words", "3. Fish", "4. Exit" };
-
+           
             static string GetSpeech()
             {
                 string speech = " I say to you today, my friends, so even though we face the difficulties of today and tomorrow, I still have a dream. It is a dream deeply rooted in the American dream. " +
@@ -48,15 +47,20 @@ namespace Lab1
                 return speech;
             }
 
-            static string[] Splitter()
-            {               
-                string[] speechSplit = GetSpeech().Split(new[] { '|', ' ', '.', '!', '?', ',', ';', ':', '\n', '\t', '\r' }, StringSplitOptions.RemoveEmptyEntries);
-                for(int i = 0; i < speechSplit.Length; i++)
+            static List<string> Splitter()
+            {
+                string[] speechSplitArray = GetSpeech().Split(new char[] { '|', ' ', '.', '!', '?', ',', ';', ':', '\n', '\t', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+                List<string> speechSplitList = new List<string>(speechSplitArray);
+                for(int i = 0; i < speechSplitList.Count; i++)
                 {
-                    Console.WriteLine(speechSplit[i]);
+                    Console.WriteLine(speechSplitList[i]);
                 }
-                return speechSplit;
+                return speechSplitList;
+              
             }
+
+            int menuChoice = 1;
+            string[] mainMenu = new string[] { "1. Show Speech", "2. Only Words", "3. Fish", "4. Exit" };
 
             while (menuChoice != 4)
             {
