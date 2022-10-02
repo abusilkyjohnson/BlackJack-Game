@@ -27,7 +27,7 @@ namespace Lab1
             //the while loop, you should 1) call GetMenuChoice to show the menu and get the
             //user’s menu selection. 2) use a switch statement that has logic for each menu option.
 
-           
+
             static string GetSpeech()
             {
                 string speech = " I say to you today, my friends, so even though we face the difficulties of today and tomorrow, I still have a dream. It is a dream deeply rooted in the American dream. " +
@@ -46,21 +46,64 @@ namespace Lab1
             "And when this happens, when we allow freedom to ring, when we let it ring from every village and every hamlet, from every state and every city, we will be able to speed up that day when all of God's children, black men and white men, Jews and Gentiles, Protestants and Catholics, will be able to join hands and sing in the words of the old Negro spiritual, Free at last! free at last! thank God Almighty, we are free at last!";
                 return speech;
             }
+            string storedSpeech = GetSpeech();
+
 
             static List<string> Splitter()
             {
                 string[] speechSplitArray = GetSpeech().Split(new char[] { '|', ' ', '.', '!', '?', ',', ';', ':', '\n', '\t', '\r' }, StringSplitOptions.RemoveEmptyEntries);
                 List<string> speechSplitList = new List<string>(speechSplitArray);
-                for(int i = 0; i < speechSplitList.Count; i++)
-                {
-                    Console.WriteLine(speechSplitList[i]);
-                }
                 return speechSplitList;
-              
+
+            }
+            List<string> storedSplitter = Splitter();
+
+
+
+
+            static Dictionary<string, int> SpeechCount(List<string> words)
+            {
+                Dictionary<string, int> count = new Dictionary<string, int>();
+                for (int i = 0; i < count.Count; i++)
+                {
+                    if (count.ContainsKey(words[i]))
+                    {
+                        count[words[i]]++;
+                    }
+                    else
+                    {
+                        count.Add(words[i], 1);
+                    }
+                   
+                }
+                return count;
+            }
+            Dictionary<string, int> storedDictionary = SpeechCount(Splitter());
+
+
+
+
+            static void PrintKeyValueBar(string word, int count)
+            {
+                foreach(KeyValuePair<string, int> pair in SpeechCount(Splitter()))
+                {
+                    string key = pair.Key;
+                    int value = pair.Value;
+                    Console.Write(key);
+                    Console.CursorLeft = 10;
+                    Console.BackgroundColor = ConsoleColor.Green;
+                    for (int i = 0; i < value; i++)
+                    {
+                        Console.Write(" ");
+                    }
+                }
+                              
             }
 
+            
+
             int menuChoice = 1;
-            string[] mainMenu = new string[] { "1. Show Speech", "2. Only Words", "3. Fish", "4. Exit" };
+            string[] mainMenu = new string[] { "1. Show Speech", "2. Only Words", "3. Show Histogram", "4. Exit" };
 
             while (menuChoice != 4)
             {
@@ -72,14 +115,19 @@ namespace Lab1
                         Console.WriteLine(GetSpeech());
                         break;
                     case 2:
-                     Console.WriteLine(Splitter());
+                        for(int i = 0; i < storedSplitter.Count; i++)
+                        {
+                            Console.WriteLine(storedSplitter[i]);
+                        }
+
+                        Console.ReadLine();
                         break;
                     case 3:
                         Console.WriteLine("Fish");
                         break;
 
                 }
-                
+
             }
 
         }
