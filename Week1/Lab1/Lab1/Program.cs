@@ -64,18 +64,17 @@ namespace Lab1
             static Dictionary<string, int> SpeechCount(List<string> words)
             {
                 Dictionary<string, int> count = new Dictionary<string, int>();
-                for (int i = 0; i < count.Count; i++)
-                {
-                    if (count.ContainsKey(words[i]))
+                foreach (string word in words)
+                    if (count.ContainsKey(word))
                     {
-                        count[words[i]]++;
+                        count[word]++;
                     }
                     else
                     {
-                        count.Add(words[i], 1);
+                        count.Add(word, 1);
                     }
-                   
-                }
+
+
                 return count;
             }
             Dictionary<string, int> storedDictionary = SpeechCount(Splitter());
@@ -85,45 +84,94 @@ namespace Lab1
 
             static void PrintKeyValueBar(string word, int count)
             {
-                foreach(KeyValuePair<string, int> pair in SpeechCount(Splitter()))
-                {
-                    string key = pair.Key;
-                    int value = pair.Value;
-                    Console.Write(key);
-                    Console.CursorLeft = 10;
-                    Console.BackgroundColor = ConsoleColor.Green;
-                    for (int i = 0; i < value; i++)
-                    {
-                        Console.Write(" ");
-                    }
-                }
-                              
+                Console.WriteLine("");
+                Console.Write(word);
+                Console.CursorLeft = 10;
+                Console.BackgroundColor = ConsoleColor.Green;
+                Console.Write(new string(' ', count));
+                Console.ResetColor();
+                Console.Write(count);
+
             }
 
-            
+
 
             int menuChoice = 1;
-            string[] mainMenu = new string[] { "1. Show Speech", "2. Only Words", "3. Show Histogram", "4. Exit" };
+            string[] mainMenu = new string[] { "1. Show Speech", "2. Only Words", "3. Show Histogram", "4. Search For Word", "5. Search For Sentences", "6.Remove Word", "7. Exit" };
 
-            while (menuChoice != 4)
+            while (menuChoice != 7)
             {
+
                 Input.GetMenuChoice("", mainMenu, out menuChoice);
                 Console.Clear();
                 switch (menuChoice)
                 {
                     case 1:
                         Console.WriteLine(GetSpeech());
+                        Console.ReadLine();
+                        Console.Clear();
                         break;
+
                     case 2:
-                        for(int i = 0; i < storedSplitter.Count; i++)
+                        for (int i = 0; i < storedSplitter.Count; i++)
                         {
                             Console.WriteLine(storedSplitter[i]);
                         }
 
                         Console.ReadLine();
+                        Console.Clear();
                         break;
+
                     case 3:
-                        Console.WriteLine("Fish");
+                        foreach (KeyValuePair<string, int> pair in storedDictionary)
+                        {
+                            PrintKeyValueBar(pair.Key, pair.Value);
+                        }
+                        Console.ReadLine();
+                        Console.Clear();
+                        break;
+
+                    case 4:
+                        Console.WriteLine("What word would you like mate?");
+                        string userInput = Console.ReadLine();
+                        foreach (KeyValuePair<string, int> pair in storedDictionary)// i knw this dont do much but it allows me to clear the screen or else it show what i found then the menu 
+                        {
+                            if (storedDictionary.TryGetValue(userInput, out int value))
+                            {
+                                PrintKeyValueBar(userInput, value);
+                                Console.ReadLine();
+                                break;
+
+                            }
+                            else
+                            {
+                                Console.WriteLine("Not in there mate");
+                                break;
+                            }
+                        }
+                        Console.ReadLine();
+                        Console.Clear();
+                        break;
+
+                    case 5:
+
+
+                        break;
+
+
+                    case 6:
+                        Console.WriteLine("What word would you like to remove?");
+                        string remove = Console.ReadLine();
+                        storedDictionary.Remove(remove);
+                        if (storedDictionary.TryGetValue(remove, out int value2))
+                        {
+                            PrintKeyValueBar(remove, value2);
+                            Console.ReadLine();
+                            Console.Clear();
+                        }
+
+                        break;
+                    case 7:
                         break;
 
                 }
