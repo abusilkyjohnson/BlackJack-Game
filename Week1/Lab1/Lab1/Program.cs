@@ -49,14 +49,15 @@ namespace Lab1
             string storedSpeech = GetSpeech();
 
 
-            static List<string> Splitter()
+            static List<string> Splitter(string text, char[] delimiter)
             {
-                string[] speechSplitArray = GetSpeech().Split(new char[] { '|', ' ', '.', '!', '?', ',', ';', ':', '\n', '\t', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] speechSplitArray = text.Split(new char[] { '|', ' ', '.', '!', '?', ',', ';', ':', '\n', '\t', '\r' }, StringSplitOptions.RemoveEmptyEntries);
                 List<string> speechSplitList = new List<string>(speechSplitArray);
                 return speechSplitList;
 
             }
-            List<string> storedSplitter = Splitter();
+            char[] delimiter = new char[] { '|', ' ', '.', '!', '?', ',', ';', ':', '\n', '\t', '\r' };
+            List<string> storedSplitter = Splitter(GetSpeech(), delimiter);
 
 
 
@@ -77,7 +78,7 @@ namespace Lab1
 
                 return count;
             }
-            Dictionary<string, int> storedDictionary = SpeechCount(Splitter());
+            Dictionary<string, int> storedDictionary = SpeechCount(Splitter(GetSpeech(), delimiter));
 
 
 
@@ -155,9 +156,9 @@ namespace Lab1
 
                     case 5:
 
-
+                        //I just couldnt make it happen here 
+                       
                         break;
-
 
                     case 6:
                         Console.WriteLine("What word would you like to remove?");

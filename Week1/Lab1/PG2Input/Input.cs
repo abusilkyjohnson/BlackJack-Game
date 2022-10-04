@@ -21,7 +21,7 @@ namespace PG2Input
 
             //Add code to this method to do the following:
             //- show the message
-            Console.Write("What is your input mate :" + message);
+            Console.Write(message);
             //- get the user's input
             string userInput = Console.ReadLine();
             //- return the input
@@ -97,14 +97,14 @@ namespace PG2Input
         //the ref parameter.Call ValidString to check if the input is valid.Return if it is valid.If
         //the user’s input is not valid, print an error message.Do not return until the user
         //enters something.Therefore, you’ll need a loop.
-        public static void GetString(ref string input)
+        public static void GetString(string message, ref string input)
         {
-            Console.WriteLine("Input a string:");
-            string userInput = GetInput(input);
+            //Console.WriteLine("Input a string:");
+            string userInput = GetInput(message);
             do
             {
-                Console.WriteLine("Error not a valid string");
-                Console.WriteLine("Input a string:");
+                //Console.WriteLine("Error not a valid string");
+                //Console.WriteLine("Input a string:");
                 userInput = GetInput(input);
                 if (ValidString(userInput))
                 {
