@@ -100,12 +100,13 @@ namespace PG2Input
         public static void GetString(string message, ref string input)
         {
             //Console.WriteLine("Input a string:");
-            string userInput = GetInput(message);
+            string userInput;
             do
             {
                 //Console.WriteLine("Error not a valid string");
                 //Console.WriteLine("Input a string:");
-                userInput = GetInput(input);
+                userInput = GetInput(message);// swap input for message from lab 1
+                input = GetInput(userInput);// ADDED after lab 1 prof suggestion
                 if (ValidString(userInput))
                 {
                     Console.WriteLine(userInput);
