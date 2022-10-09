@@ -37,24 +37,25 @@ namespace Lab2
 
         public static List<string> BubbleSort(List<string> original)
         {
-            List<string> sorted = original;
+            List<string> sorted = original.ToList();
             int n = original.Count;
             bool swapComic = true;
-            while (swapComic) 
+            while (swapComic)
             {
                 swapComic = false;
-                for (int i = 1; i <= n-1; i++)
+                for (int i = 1; i <= n - 1; i++)
                 {
-                    int compResult = original[i - 1].CompareTo(original[i]);
+                    int compResult = sorted[i - 1].CompareTo(sorted[i]);
                     if (compResult == 1)
                     {
-                        Swap(original, i-1, i);
+                        Swap(sorted, i - 1, i);
                         swapComic = true;
+                        
                     }
 
                 }
                 n--;
-                while(!swapComic)
+                while (!swapComic)
                 {
                     break;
                 }
@@ -64,6 +65,71 @@ namespace Lab2
 
             return sorted;
         }
+
+        public static List<string> MergeSort(List<string> m)
+        {
+            if (m.Count <= 1)
+            {
+                return m;
+            }
+
+            List<string> left = new List<string>();
+            List<string> right = new List<string>();
+            int med = (m.Count) / 2;
+
+            for (int i = 0; i < m.Count; i++)
+            {
+                if (i < med)
+                {
+                    left.Add(m[i]);
+                }
+                else
+                {
+
+                    right.Add(m[i]);
+
+                }
+                left = MergeSort(left);
+                right = MergeSort(right);
+
+            }
+            return Merge(left, right);
+        }
+
+        public static List<string> Merge(List<string> left, List<string> right)
+        {
+            List<string> result = new List<string>();
+            while (left.Count != 0 && right.Count != 0)
+            {
+                if (left.First().CompareTo(right.First()) <= 0)
+                {
+                    result.Add(left.First());
+                    left.Remove(left.First());
+                }
+                else
+                {
+                    result.Add(right.First());
+                    right.Remove(right.First());
+                }
+
+            }
+            while (left.Count != 0)
+            {
+                result.Add(left.First());
+                left.Remove(left.First());
+
+            }
+            while (right.Count != 0)
+            {
+                result.Add(right.First());
+                right.Remove(right.First());
+
+            }
+
+            return result;
+        }
+
+        
     }
 
 
