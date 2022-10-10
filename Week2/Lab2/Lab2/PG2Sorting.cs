@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -40,6 +41,7 @@ namespace Lab2
             List<string> sorted = original.ToList();
             int n = original.Count;
             bool swapComic = true;
+            int counter = 0;
             while (swapComic)
             {
                 swapComic = false;
@@ -50,9 +52,8 @@ namespace Lab2
                     {
                         Swap(sorted, i - 1, i);
                         swapComic = true;
-                        
                     }
-
+                    counter++;
                 }
                 n--;
                 while (!swapComic)
@@ -62,7 +63,7 @@ namespace Lab2
 
 
             }
-
+            Console.WriteLine($" The list contains {sorted.Count} element and loops {counter}");
             return sorted;
         }
 
@@ -129,7 +130,51 @@ namespace Lab2
             return result;
         }
 
-        
+        public static int BinarySearch(List<string> comics,string searchTerm, int low, int high, ref int call)
+        {
+
+            if(high < low)
+            {
+                call = 1;
+                return -1;
+            }
+            call++;
+            int mid = (high + low) / 2;
+            int comicComparison = searchTerm.CompareTo(comics[mid]);
+            if ( comicComparison < 0)
+            {
+                return BinarySearch(comics, searchTerm, low, mid -1, ref call);
+            }
+            else if (comicComparison > 0)
+            {
+                return BinarySearch(comics, searchTerm,mid + 1, high, ref call);
+
+            }
+            else
+            {
+                call = 1;
+                return mid;
+            }    
+        }
+
+        public static void SaveJson(List<string> jsonUN)
+        {
+            List<string> converttList = jsonUN.ToList();
+            List<string> example = MergeSort(converttList);
+
+            string jPath = "inputFile.csv";
+            jPath = Path.ChangeExtension(jPath, "json");
+            using(StreamWriter sw = new StreamWriter(jPath))
+            {
+                using (JsonTextWriter jtw = new JsonTextWriter(sw))
+                {
+                    jtw.Formatting = Formatting.Indented;
+                    JsonSerializer jsonSerializer = new JsonSerializer();
+                    jsonSerializer.Serialize(jtw, example);
+                }
+            }
+            
+        }
     }
 
 

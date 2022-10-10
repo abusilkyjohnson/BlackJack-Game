@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using PG2Input;
 
 namespace Lab2
@@ -21,12 +22,11 @@ namespace Lab2
             string[] sortOr = new string[] { "1. Bubble Sort", "2. Merge Sort", "3. Binary Search", "4. Save", "5. Exit", };
             while (options != 7)
             {
+  
                 Input.GetMenuChoice("", sortOr, out options);
                 switch (options)
                 {
                     case 1:
-                        //MUST Print total items in list and how it looks
-                        //fix the way it present after it shows up 
                         List<string> unsorted = PG2Sorting.fileReader();
                         List<string> bubbled = PG2Sorting.BubbleSort(unsorted);
                         for (int i = 0; i < unsorted.Count; i++)
@@ -36,7 +36,7 @@ namespace Lab2
                             Console.Write(bubbled[i]);
                         }
                         break;
-
+                        
 
                     case 2:
                         List<string> originalL = PG2Sorting.fileReader();
@@ -49,10 +49,32 @@ namespace Lab2
                         }
                         break;
                     case 3:
+                        List<string> comicList = PG2Sorting.fileReader();
+                        List<string> cloneComic = PG2Sorting.MergeSort(comicList.ToList());
+                        string term = string.Empty;
+                        int high = cloneComic.Count - 1;
+                        int callC = 0;
+                        for (int i = 0; i < cloneComic.Count; i++)
+                        {
+                            int indexC = cloneComic.IndexOf(cloneComic[i]);
+                            Console.Write("\n" + cloneComic[i]);
+                            Console.CursorLeft = 43;
+                            Console.Write($"Index Found: {PG2Sorting.BinarySearch(cloneComic, term, 0, high, ref callC)}");
+                            Console.CursorLeft = 60;
+                            Console.Write("Index:" + indexC);
+                            Console.CursorLeft = 80;
+                            Console.Write("Method Call:"+ callC);
 
+                        }
                         break;
 
                     case 4:
+                        string file = "";
+                        List<string> c4Un = PG2Sorting.fileReader();
+                        List<string> c4Sort = PG2Sorting.MergeSort(c4Un.ToList());
+                        Input.GetString("The name of the save file ?", ref file);
+                        PG2Sorting.SaveJson(c4Sort);
+                        
                         break;
 
                     case 5:
