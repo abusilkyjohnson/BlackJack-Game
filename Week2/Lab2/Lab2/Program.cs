@@ -20,10 +20,12 @@ namespace Lab2
 
             int options = 1;
             string[] sortOr = new string[] { "1. Bubble Sort", "2. Merge Sort", "3. Binary Search", "4. Save", "5. Exit", };
-            while (options != 7)
+            List<string> Fvariable = PG2Sorting.fileReader();
+            while (options != 5)
             {
   
                 Input.GetMenuChoice("", sortOr, out options);
+                Console.Clear();
                 switch (options)
                 {
                     case 1:
@@ -46,40 +48,36 @@ namespace Lab2
                             Console.Write("\n" + originalL[i]);
                             Console.CursorLeft = 50;
                             Console.Write(merger[i]);
+
                         }
                         break;
                     case 3:
-                        List<string> comicList = PG2Sorting.fileReader();
-                        List<string> cloneComic = PG2Sorting.MergeSort(comicList.ToList());
-                        string term = string.Empty;
-                        int high = cloneComic.Count - 1;
+                        Fvariable.Sort();
+                        int high = Fvariable.Count;
                         int callC = 0;
-                        for (int i = 0; i < cloneComic.Count; i++)
+                        foreach (string s in Fvariable)
                         {
-                            int indexC = cloneComic.IndexOf(cloneComic[i]);
-                            Console.Write("\n" + cloneComic[i]);
+                            int indexC = Fvariable.IndexOf(s);
+                            Console.Write("\n" + s);
                             Console.CursorLeft = 43;
-                            Console.Write($"Index Found: {PG2Sorting.BinarySearch(cloneComic, term, 0, high, ref callC)}");
+                            Console.Write("Index: " + indexC);
                             Console.CursorLeft = 60;
-                            Console.Write("Index:" + indexC);
+                            Console.Write($"Index Found: {PG2Sorting.BinarySearch(Fvariable, s, 0, high, ref callC)}");
                             Console.CursorLeft = 80;
-                            Console.Write("Method Call:"+ callC);
-
+                            Console.Write("Method Call: " + callC);
                         }
                         break;
 
                     case 4:
-                        string file = "";
-                        List<string> c4Un = PG2Sorting.fileReader();
-                        List<string> c4Sort = PG2Sorting.MergeSort(c4Un.ToList());
-                        Input.GetString("The name of the save file ?", ref file);
-                        PG2Sorting.SaveJson(c4Sort);
+                        List<string> c4Un = new (Fvariable);
+                        PG2Sorting.SaveJson(PG2Sorting.MergeSort(c4Un));
                         
                         break;
 
-                    case 5:
-                        break;
+
                 }
+                Console.ReadLine();
+                Console.Clear();
             }
 
 

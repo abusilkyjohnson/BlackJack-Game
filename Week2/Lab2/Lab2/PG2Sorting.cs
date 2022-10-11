@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using PG2Input;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -132,13 +133,12 @@ namespace Lab2
 
         public static int BinarySearch(List<string> comics,string searchTerm, int low, int high, ref int call)
         {
-
-            if(high < low)
+            call++;
+            if (high < low)
             {
                 call = 1;
                 return -1;
             }
-            call++;
             int mid = (high + low) / 2;
             int comicComparison = searchTerm.CompareTo(comics[mid]);
             if ( comicComparison < 0)
@@ -152,25 +152,25 @@ namespace Lab2
             }
             else
             {
-                call = 1;
                 return mid;
             }    
         }
 
         public static void SaveJson(List<string> jsonUN)
         {
-            List<string> converttList = jsonUN.ToList();
-            List<string> example = MergeSort(converttList);
+            string file = "";
+            string holder = "The name of the save file ?";
+            Input.GetString(holder, ref file);
+            
 
-            string jPath = "inputFile.csv";
-            jPath = Path.ChangeExtension(jPath, "json");
-            using(StreamWriter sw = new StreamWriter(jPath))
+            file = Path.ChangeExtension(file, ".json");
+            using(StreamWriter sw = new StreamWriter(file))
             {
                 using (JsonTextWriter jtw = new JsonTextWriter(sw))
                 {
                     jtw.Formatting = Formatting.Indented;
                     JsonSerializer jsonSerializer = new JsonSerializer();
-                    jsonSerializer.Serialize(jtw, example);
+                    jsonSerializer.Serialize(jtw, jsonUN);
                 }
             }
             

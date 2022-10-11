@@ -97,35 +97,32 @@ namespace PG2Input
         //the ref parameter.Call ValidString to check if the input is valid.Return if it is valid.If
         //the user’s input is not valid, print an error message.Do not return until the user
         //enters something.Therefore, you’ll need a loop.
+
         public static void GetString(string message, ref string input)
         {
-            //Console.WriteLine("Input a string:");
-            string userInput;
-            do
-            {
-                //Console.WriteLine("Error not a valid string");
-                //Console.WriteLine("Input a string:");
-                userInput = GetInput(message);// swap input for message from lab 1
-                input = GetInput(userInput);// ADDED after lab 1 prof suggestion
-                if (ValidString(userInput))
-                {
-                    Console.WriteLine(userInput);
-                }
+            //abu refer to w1 github for ur first Getstring 
+ 
+            input = Input.GetInput(message);
+            bool lab2 = ValidString(input);
+            while(!lab2)
+            {               
+                    Console.WriteLine("Error");
+                input = Input.GetInput(message);
+                 lab2 = ValidString(input);
 
-            } while (!ValidString(userInput));
-
-
+            }
         }
 
 
-        //Part A-7: GetMenuChoice
-        //Create a method called GetMenuChoice that will ask the user to select from a list of 
-        //options.Instead of returning like GetInteger or passing back the value like GetString,
-        //you should return the menu selection through an out parameter.The method should
-        //show a list of options to the user(the menuOptions parameter). Get the user’s
-        //selection by calling GetInteger and assign the integer to the out parameter.
 
-        public static void GetMenuChoice(string input , string[] menuOptions,out int menuSelection )
+            //Part A-7: GetMenuChoice
+            //Create a method called GetMenuChoice that will ask the user to select from a list of 
+            //options.Instead of returning like GetInteger or passing back the value like GetString,
+            //you should return the menu selection through an out parameter.The method should
+            //show a list of options to the user(the menuOptions parameter). Get the user’s
+            //selection by calling GetInteger and assign the integer to the out parameter.
+
+            public static void GetMenuChoice(string input , string[] menuOptions,out int menuSelection )
         {
             menuSelection = 0;
        
