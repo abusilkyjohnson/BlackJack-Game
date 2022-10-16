@@ -11,10 +11,6 @@ namespace BlackjackClassLibrary
         public CardFace Face { get; private set; }
         public CardSuit Suit { get; private set; }
 
-        public Card()
-        {
-
-        }
         public Card(CardFace face, CardSuit suit)
         {
             Face = face;

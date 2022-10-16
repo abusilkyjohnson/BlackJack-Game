@@ -1,7 +1,7 @@
 ﻿using System;
 using PG2Input;
 using BlackjackClassLibrary;
-
+using System.Collections.Generic;
 
 namespace Lab3
 {
@@ -56,7 +56,16 @@ namespace Lab3
                         sample.WriteC(14,4, ConsoleColor.Red);
                         Console.ResetColor();
                         break;
+                    
+                    case 2:
+                        Deck deckC2 = new Deck();
+                        deckC2.Shuffle();
+                        deckC2.WriteD(ConsoleColor.Red);
+
+                        Console.ResetColor();
+
                         
+                        break;
                        
                 }
                 Console.ReadLine();
