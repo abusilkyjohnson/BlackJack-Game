@@ -59,7 +59,7 @@ namespace Lab3
 
                     case 2:
                         Deck deckC2 = new Deck();
-                        deckC2.Shuffle();
+                        //deckC2.Shuffle();
                         deckC2.WriteD(ConsoleColor.Red);
                         Console.ResetColor();
                         break;

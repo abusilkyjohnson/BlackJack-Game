@@ -49,10 +49,10 @@ namespace BlackjackClassLibrary
                     Console.Write("7");
                     break;
                 case CardFace.eight:
-                    Console.Write("A");
+                    Console.Write("8");
                     break;
                 case CardFace.nine:
-                    Console.Write("8");
+                    Console.Write("9");
                     break;
                 case CardFace.ten:
                     Console.Write("10");
