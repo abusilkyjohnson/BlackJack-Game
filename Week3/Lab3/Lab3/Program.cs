@@ -76,6 +76,7 @@ namespace Lab3
                         blackjackHandDealer.AddCard(blackjackDeckC3.NextCard());
                         blackjackHandDealer.AddCard(blackjackDeckC3.NextCard());
                         blackjackHandDealer.Write(0, 4, ConsoleColor.Red);
+                        //blackjackHandDealer.Reveal(0, 6, ConsoleColor.Red);
 
 
                         Console.ResetColor();

@@ -28,37 +28,38 @@ namespace BlackjackClassLibrary
 
         public void CalculateScore()
         {
-            int score = Score;
-            List<Card> hand = _cards;
-            for (int i = 0; i < hand.Count; i++)
+            Score = 0;
+
+            foreach (BlackjackCard h in _cards)
             {
-                foreach (BlackjackCard h in hand)
+
+                if (h.Face == CardFace.a && Score + h.Value > 21)
                 {
-                    if (h.Face == CardFace.a && score + h.Value > 21)
-                    {
-                        h.Value = 1;
-                    }
-                    else if (h.Face == CardFace.a && score + h.Value <= 21)
-                    {
-                        h.Value = 11;
-                    }
-                    Score += h.Value;
+                    h.Value = 1;
                 }
-                
+                else if (h.Face == CardFace.a && Score + h.Value <= 21)
+                {
+                    h.Value = 11;
+                }
+                Score += ((BlackjackCard)h).Value;
             }
+
+
+
+
         }
 
         public override void Write(int x, int y, ConsoleColor color)
         {
             if (isDealer == true)
             {
-                for (int i = 0; i < _cards.Count; i++)
+                for (int i = 1; i < _cards.Count; i++)
                 {
-                    if (_cards[0].Suit == CardSuit.spades || _cards[0].Suit == CardSuit.clubs || _cards[0].Suit == CardSuit.hearts || _cards[0].Suit == CardSuit.diamond)
+                    if (_cards[1].Suit == CardSuit.spades || _cards[1].Suit == CardSuit.clubs || _cards[1].Suit == CardSuit.hearts || _cards[1].Suit == CardSuit.diamond)
                     {
-                        _cards[0].WriteC(x, y, ConsoleColor.White);
+                        _cards[1].WriteC(x, y, ConsoleColor.White);// i dont get why this doesnt print a white box 
                         Console.ResetColor();
-                        Console.WriteLine("          " + Score);
+                        Console.Write("          " + "??");
                     }
                 }
             }
@@ -83,7 +84,7 @@ namespace BlackjackClassLibrary
                 isDealer = false;
                 for (int i = 1; i < _cards.Count; i++)
                 {
-                    _cards[i].WriteC(x, y, color);
+                    _cards[1].WriteC(x, y, color);
                     x += 4;
                 }
 
