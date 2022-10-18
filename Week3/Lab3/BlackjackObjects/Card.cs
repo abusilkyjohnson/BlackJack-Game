@@ -8,8 +8,10 @@ namespace BlackjackClassLibrary
 {
     public class Card
     {
+        #region properties
         public CardFace Face { get; private set; }
         public CardSuit Suit { get; private set; }
+        #endregion
 
         public Card(CardFace face, CardSuit suit)
         {
@@ -52,14 +54,17 @@ namespace BlackjackClassLibrary
                 case CardFace.nine:
                     Console.Write("8");
                     break;
-                case CardFace.j:
+                case CardFace.ten:
                     Console.Write("10");
                     break;
+                case CardFace.j:
+                    Console.Write("J");
+                    break;
                 case CardFace.q:
-                    Console.Write("11");
+                    Console.Write("Q");
                     break;
                 case CardFace.k:
-                    Console.Write("11");
+                    Console.Write("K");
                     break;
                 default:
                     break;

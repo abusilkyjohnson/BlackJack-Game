@@ -13,5 +13,12 @@ namespace BlackjackClassLibrary
             Card card = new Card(face, suit);
             return card;
         }
+
+        public static Card CreateBlackjackCard(CardFace face, CardSuit suit)
+        {
+            Card card = new BlackjackCard(face, suit);
+
+             return card ;
+        }
     }
 }

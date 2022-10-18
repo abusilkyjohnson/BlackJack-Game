@@ -9,7 +9,7 @@ namespace BlackjackClassLibrary
     public class Deck
     {
         #region Fields
-        List<Card> _cards = new List<Card>();
+        public List<Card>  _cards = new List<Card>();
         #endregion
 
         public Deck()
@@ -18,14 +18,17 @@ namespace BlackjackClassLibrary
         }
 
 
-        public void CreateAllCards()
+        public virtual void CreateAllCards()
         {
+            Card deckL = null;
 
             for (int i = 1; i <= 13; i++)
             {
                 for (int j = 1; j <= 4; j++)
                 {
-                    CardFactory.CreateCard((CardFace)i, (CardSuit)j);
+                   deckL = (CardFactory.CreateCard((CardFace)i, (CardSuit)j));
+                    _cards.Add(deckL);
+
                 }
             }
 
@@ -55,12 +58,9 @@ namespace BlackjackClassLibrary
             for (int i = 0; i < n; i++)
             {
                 cardRando = random.Next(0, 51);
-                temp = _cards[i];
-                Card card = _cards[cardRando];
-                _cards[i] = card;
-                card = temp;
-
-
+                temp = _cards[cardRando];
+                _cards[cardRando] = _cards[n - 1];
+                _cards[n - 1] = temp;
             }
         }
 
@@ -75,12 +75,16 @@ namespace BlackjackClassLibrary
             for (int i = 0; i < _cards.Count; i++)
             {
                 _cards[i].WriteC(x, y, color);
-                x += 2;
+                x += 4;
                 if (i == _cards.Count - 1)
                 {
-                    Console.Write(" ");
+                    Console.Write("");
                 }
-
+                if(i % 7 == 0 && i != 0)
+                {
+                    y += 2;
+                    x = 0;
+                }
 
             }
 

@@ -13,13 +13,13 @@ namespace BlackjackClassLibrary
 
             #endregion
         
-        public void AddCard(Card addH)
+        public virtual void AddCard(Card addH)
         {
              _cards.Add(addH);
 
         }
 
-        public void Write(int x, int y, ConsoleColor color)
+        public virtual void Write(int x, int y, ConsoleColor color)
         {
 
             int startX = x;
@@ -32,7 +32,7 @@ namespace BlackjackClassLibrary
             }
         }
 
-        public void Clear()
+        public virtual void Clear()
 
         {
             _cards.Clear();
