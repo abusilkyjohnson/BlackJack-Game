@@ -23,8 +23,8 @@ namespace BlackjackClassLibrary
         public void WriteC(int x, int y, ConsoleColor color)
         {
             Console.SetCursorPosition(x, y);
-            Console.BackgroundColor = ConsoleColor.White;
-            Console.ForegroundColor = color;
+            Console.BackgroundColor = color;
+            Console.ForegroundColor = ConsoleColor.Red;
             switch (Face)
             {
                 case CardFace.a:
@@ -49,10 +49,10 @@ namespace BlackjackClassLibrary
                     Console.Write("7");
                     break;
                 case CardFace.eight:
-                    Console.Write("A");
+                    Console.Write("8");
                     break;
                 case CardFace.nine:
-                    Console.Write("8");
+                    Console.Write("9");
                     break;
                 case CardFace.ten:
                     Console.Write("10");

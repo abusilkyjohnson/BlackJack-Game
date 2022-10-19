@@ -53,14 +53,14 @@ namespace Lab3
                 {
                     case 1:
                         Card sample = new Card(CardFace.a, CardSuit.diamond);
-                        sample.WriteC(14, 4, ConsoleColor.Red);
+                        sample.WriteC(14, 4, ConsoleColor.White);
                         Console.ResetColor();
                         break;
 
                     case 2:
                         Deck deckC2 = new Deck();
                         deckC2.Shuffle();
-                        deckC2.WriteD(ConsoleColor.Red);
+                        deckC2.WriteD(ConsoleColor.White);
                         Console.ResetColor();
                         break;
                     case 3:
@@ -71,13 +71,12 @@ namespace Lab3
                        
                         blackjackHandPlayer.AddCard(blackjackDeckC3.NextCard());
                         blackjackHandPlayer.AddCard(blackjackDeckC3.NextCard());
-                        blackjackHandPlayer.Write(0, 0, ConsoleColor.Red);
+                        blackjackHandPlayer.Write(0, 0, ConsoleColor.White);
                         
                         blackjackHandDealer.AddCard(blackjackDeckC3.NextCard());
                         blackjackHandDealer.AddCard(blackjackDeckC3.NextCard());
-                        blackjackHandDealer.Write(0, 4, ConsoleColor.Red);
-                        //blackjackHandDealer.Reveal(0, 6, ConsoleColor.Red);
-
+                        blackjackHandDealer.Write(0, 4, ConsoleColor.White);
+                        blackjackHandDealer.Reveal(0, 6, ConsoleColor.White);
 
                         Console.ResetColor();
                         break;

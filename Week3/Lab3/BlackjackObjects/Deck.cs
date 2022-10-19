@@ -66,13 +66,13 @@ namespace BlackjackClassLibrary
 
         public void WriteD(ConsoleColor color)
         {
-            Console.BackgroundColor = ConsoleColor.White;
-            Console.ForegroundColor = color;
+            Console.BackgroundColor = color;
+            Console.ForegroundColor = ConsoleColor.White;
             List<Card> clone4Deck = _cards.ToList();
             int x = 0;
             int y = 0;
 
-            for (int i = 0; i < _cards.Count; i++)
+            for (int i = 1; i < _cards.Count; i++)
             {
                 _cards[i].WriteC(x, y, color);
                 x += 4;

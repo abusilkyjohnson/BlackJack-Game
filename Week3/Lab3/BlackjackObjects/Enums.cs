@@ -8,7 +8,7 @@
 
     public enum CardFace
     {
-        a = 1, two, three, four, five, six, seven, eight, nine, ten,j, q, k
+        a =1 , two, three, four, five, six, seven, eight, nine , ten,j, q, k
 
     }
 }
