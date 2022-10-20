@@ -9,7 +9,8 @@ namespace BlackjackClassLibrary
     public class Deck
     {
         #region Fields
-        public List<Card>  _cards = new List<Card>();
+        protected List<Card>  _cards = new List<Card>();
+        //change the field to protected 10/20 12:04 am
         #endregion
 
         public Deck()
@@ -37,11 +38,13 @@ namespace BlackjackClassLibrary
 
         public Card NextCard()
         {
+            
             Card anotherOne = _cards.First();
             _cards.Remove(anotherOne);
             if (_cards.Count == 0)
             {
                 CreateAllCards();
+                List<Card> cards = _cards.ToList();
             }
             return anotherOne;
 

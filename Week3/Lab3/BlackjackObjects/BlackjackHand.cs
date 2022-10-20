@@ -74,6 +74,7 @@ namespace BlackjackClassLibrary
         public override void Clear()
         {
             base.Clear();
+            Score = 0;
         }
 
         public void Reveal(int x, int y, ConsoleColor color)

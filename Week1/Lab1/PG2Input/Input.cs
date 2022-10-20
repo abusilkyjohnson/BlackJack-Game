@@ -40,10 +40,7 @@ namespace PG2Input
             {
                 withinRange = true;
             }
-            else
-            {
-
-            }
+            //removed the empty block
             return withinRange;
         }
 
