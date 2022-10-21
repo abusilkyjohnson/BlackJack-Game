@@ -57,7 +57,8 @@ namespace BlackjackClassLibrary
                 Console.ResetColor();
 
 
-            }
+       
+                    }
             else
             {
                 base.Write(x, y, color);
@@ -65,10 +66,10 @@ namespace BlackjackClassLibrary
                 Console.Write("  " + Score);
             }
             base.Write(x, y, color);
-            Console.BackgroundColor = ConsoleColor.Red;
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.SetCursorPosition(0, 4);
-            Console.Write("0000");
+            //Console.BackgroundColor = ConsoleColor.Red;
+            //Console.ForegroundColor = ConsoleColor.Red;
+            //Console.SetCursorPosition(0, 4);
+            //Console.Write("0000");
         }
 
         public override void Clear()

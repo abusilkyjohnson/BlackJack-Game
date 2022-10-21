@@ -2,6 +2,7 @@
 using PG2Input;
 using BlackjackClassLibrary;
 using System.Collections.Generic;
+using FullSailCasino;
 
 namespace Lab3
 {
@@ -80,6 +81,16 @@ namespace Lab3
                         break;
                     case 4:
                         //TBA
+                        BlackjackGame game = new BlackjackGame();
+                        string[] playOrNo = { "1. Yes ", "2. No" };
+                        int choice = 0;
+                        Input.GetMenuChoice("", playOrNo, out choice);
+
+                        while(choice != 2)
+                        {
+                            game.PlayRound();
+                            Console.ResetColor();
+                        }
                         break;
 
                 }
