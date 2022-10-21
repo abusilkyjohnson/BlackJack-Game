@@ -86,11 +86,13 @@ namespace Lab3
                         int choice = 0;
                         Input.GetMenuChoice("", playOrNo, out choice);
 
-                        while(choice != 2)
+                        while (choice != 2)
                         {
                             game.PlayRound();
                             Console.ResetColor();
                         }
+
+
                         break;
 
                 }

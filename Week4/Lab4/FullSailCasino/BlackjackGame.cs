@@ -10,9 +10,9 @@ namespace FullSailCasino
 {
     public class BlackjackGame
     {
-        protected BlackjackHand _dealer = new BlackjackHand();
-        protected BlackjackHand _player = new BlackjackHand();
-        protected BlackjackDeck _deck = new BlackjackDeck();
+        protected BlackjackHand _dealer;
+        protected BlackjackHand _player;
+        protected BlackjackDeck _deck;
         protected int _playerWins;
         protected int _dealerWins;
 
@@ -40,34 +40,35 @@ namespace FullSailCasino
 
         }
 
+
         public void DrawTable(bool reveaal = false)// still more to do
         {
             Console.ResetColor();
             
                 Console.Clear();
-                _player.Clear();
-                _dealer.Clear();
                 Console.SetCursorPosition(10, 10);
                 Console.Write("Players Hand");
                 _player.Write(10, 14, ConsoleColor.White);
+            Console.ResetColor();
 
-                Console.SetCursorPosition(10, 4);
+            Console.SetCursorPosition(10, 4);
                 Console.Write("Dealer Hand");
                 _dealer.Write(10, 2, ConsoleColor.White);
 
             
             Console.SetCursorPosition(0, 20);
             DrawWins();
+            Console.ResetColor();
         }
         public void DrawWins()
         {
+            Console.ResetColor();
             Console.WriteLine($"Player Wins: {_playerWins}    Dealer Wins: {_dealerWins}");
 
         }
 
         public void DealIntialCard()
         {
-            
             _deck.Shuffle();
             _player.AddCard(_deck.NextCard());
             _dealer.AddCard(_deck.NextCard());
@@ -81,7 +82,7 @@ namespace FullSailCasino
             int turn = 0;
             string[] playerOptions = new string[] { "1. Hit", "2. Stand" };
 
-            while(_player.Score < 21)
+            while(turn != 2)
             {
                 Console.WriteLine("Players Hands");
                 Input.GetMenuChoice("", playerOptions, out turn);
@@ -92,7 +93,6 @@ namespace FullSailCasino
                         DrawTable();
                         break;
                     case 2:
-                        DrawTable();
                         break;
                 }
 
@@ -112,25 +112,31 @@ namespace FullSailCasino
 
         public void DeclareWinner()
         {
+            Console.SetCursorPosition(40, 10);
             if (_player.Score > 21)
             {
+                Console.WriteLine("Dealer WINS");
                 _dealerWins++;
-
             }
             else if (_dealer.Score > 21)
             {
+                Console.WriteLine("Player WINS");
                 _playerWins++;
             }
             else if (_player.Score > _dealer.Score)
             {
+                Console.WriteLine("Player WINS");
                 _playerWins++;
             }
             else if (_dealer.Score > _player.Score)
             {
+                Console.WriteLine("Dealer WINS");
                 _dealerWins++;
             }
             else if (_player.Score == _dealer.Score) { }
-                                   
+            Console.ReadKey();
+
+
         }
 
     }
