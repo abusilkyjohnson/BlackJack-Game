@@ -56,7 +56,7 @@ namespace BlackjackClassLibrary
                     {
                         Console.SetCursorPosition(posX, posY);
                         Console.ForegroundColor = ConsoleColor.White;
-                        Console.Write("[????? ]");
+                        Console.Write("[?????]");
                     }
                     else
                     {
@@ -73,7 +73,7 @@ namespace BlackjackClassLibrary
                 base.Write(x, y, color);
                 Console.SetCursorPosition(x, y + 2);
                 Console.ResetColor();
-                Console.Write("  " + Score);
+                Console.Write(" Player Score " + Score);
             }
 
         }

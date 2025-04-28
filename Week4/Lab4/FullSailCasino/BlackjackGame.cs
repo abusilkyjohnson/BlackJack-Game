@@ -37,6 +37,7 @@ namespace FullSailCasino
             else
             {
                 DeclareWinner();
+
             }
 
         }
@@ -45,24 +46,27 @@ namespace FullSailCasino
         public void DrawTable(bool reveaal = false)// still more to do
         {
             Console.ResetColor();
-
             Console.Clear();
-            Console.SetCursorPosition(10, 10);
-            Console.Write("Players Hand");
+
+            // dealer section
+            Console.SetCursorPosition(10, 2);
+            Console.Write("Dealer Hand");
             if (reveaal == true)
             {
-                _dealer.Reveal(10, 14, ConsoleColor.White);
+                _dealer.Reveal(10, 4, ConsoleColor.White);
             }
             else if (reveaal == false)
             {
-                _player.Write(10, 14, ConsoleColor.White);
+                _dealer.Write(10, 4, ConsoleColor.White);
             }
+
+            // player section
 
             Console.ResetColor();
 
-            Console.SetCursorPosition(10, 4);
-            Console.Write("Dealer Hand");
-            _dealer.Write(10, 2, ConsoleColor.White);
+            Console.SetCursorPosition(10, 8);
+            Console.Write("Player Hand");
+            _player.Write(10, 10, ConsoleColor.White);
 
 
             Console.SetCursorPosition(0, 20);
