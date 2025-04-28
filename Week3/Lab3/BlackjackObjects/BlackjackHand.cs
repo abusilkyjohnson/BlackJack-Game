@@ -24,52 +24,58 @@ namespace BlackjackClassLibrary
         public void CalculateScore()
         {
             Score = 0;
-
+            int aceCounter = 0;
             foreach (BlackjackCard h in _cards)
             {
-
-                if (h.Face == CardFace.a && Score + h.Value > 21)
+                Score += h.Value;
+                if (h.Face == CardFace.a)
                 {
-                    h.Value = 1;
+                    aceCounter++;
                 }
-                else if (h.Face == CardFace.a && Score + h.Value <= 21)
-                {
-                    h.Value = 11;
-                }
-                Score += ((BlackjackCard)h).Value;
             }
-
-
-
+            while (Score > 21 && aceCounter > 0)
+            {
+                Score -= 10;
+                aceCounter--;
+            }
 
         }
 
         public override void Write(int x, int y, ConsoleColor color)
         {
+            int posX = x;
+            int posY = y;
+
             if (isDealer == true)
             {
 
-                base.Write(x, y, color);
-                Console.ResetColor();
-                color = ConsoleColor.White;
-                Console.ResetColor();
-                Console.Write("     " + "??");
-                Console.ResetColor();
+                for (int i = 0; i < _cards.Count; i++)
+                {
 
-
-       
+                    if (i == 0)
+                    {
+                        Console.SetCursorPosition(posX, posY);
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write("[????? ]");
                     }
+                    else
+                    {
+                        _cards[i].WriteC(posX, posY, color);
+                    }
+
+                    posX += 7;
+
+                }
+            }
             else
             {
+                //players hand
                 base.Write(x, y, color);
+                Console.SetCursorPosition(x, y + 2);
                 Console.ResetColor();
                 Console.Write("  " + Score);
             }
-            base.Write(x, y, color);
-            //Console.BackgroundColor = ConsoleColor.Red;
-            //Console.ForegroundColor = ConsoleColor.Red;
-            //Console.SetCursorPosition(0, 4);
-            //Console.Write("0000");
+
         }
 
         public override void Clear()
@@ -82,24 +88,22 @@ namespace BlackjackClassLibrary
         {
             if (isDealer == true)
             {
-                for (int i = 1; i < _cards.Count; i++)
-                {
-                    base.Write(x, y, color);
-                    x += 4;
-                }
+
+
+                isDealer = false;
+                base.Write(x, y, color);
+                isDealer = true;
 
             }
             else
             {
-                for (int i = 1; i < _cards.Count; i++)
-                {
-                    base.Write(x + 5, y, color);
-                    x += 4;
 
-                }
+                base.Write(x + 5, y, color);
+
+
+                Console.ResetColor();
+                Console.Write(" Score When Reveal Called  " + Score);
             }
-            Console.ResetColor();
-            Console.Write("  " + Score);
         }
     }
 }

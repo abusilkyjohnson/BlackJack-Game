@@ -21,15 +21,16 @@ namespace FullSailCasino
             _dealer = new BlackjackHand(true);
             _player = new BlackjackHand();
             _deck = new BlackjackDeck();
-            
+
             _deck.Shuffle();
             DealIntialCard();
             DrawTable();
-            if (_player.Score != 21 || _dealer.Score != 21)
+            if (_player.Score != 21 && _dealer.Score != 21)
             {
 
                 PlayersTurn();
                 DealersTurn();
+                DrawTable(true);
                 DeclareWinner();
 
             }
@@ -44,18 +45,26 @@ namespace FullSailCasino
         public void DrawTable(bool reveaal = false)// still more to do
         {
             Console.ResetColor();
-            
-                Console.Clear();
-                Console.SetCursorPosition(10, 10);
-                Console.Write("Players Hand");
+
+            Console.Clear();
+            Console.SetCursorPosition(10, 10);
+            Console.Write("Players Hand");
+            if (reveaal == true)
+            {
+                _dealer.Reveal(10, 14, ConsoleColor.White);
+            }
+            else if (reveaal == false)
+            {
                 _player.Write(10, 14, ConsoleColor.White);
+            }
+
             Console.ResetColor();
 
             Console.SetCursorPosition(10, 4);
-                Console.Write("Dealer Hand");
-                _dealer.Write(10, 2, ConsoleColor.White);
+            Console.Write("Dealer Hand");
+            _dealer.Write(10, 2, ConsoleColor.White);
 
-            
+
             Console.SetCursorPosition(0, 20);
             DrawWins();
             Console.ResetColor();
@@ -82,11 +91,11 @@ namespace FullSailCasino
             int turn = 0;
             string[] playerOptions = new string[] { "1. Hit", "2. Stand" };
 
-            while(turn != 2)
+            while (turn != 2)
             {
                 Console.WriteLine("Players Hands");
                 Input.GetMenuChoice("", playerOptions, out turn);
-                switch(turn)
+                switch (turn)
                 {
                     case 1:
                         _player.AddCard(_deck.NextCard());
@@ -102,7 +111,7 @@ namespace FullSailCasino
         public void DealersTurn()
         {
             _dealer.Write(0, 6, ConsoleColor.White);
-            while(_dealer.Score < 17)
+            while (_dealer.Score < 17)
             {
                 _dealer.AddCard(_deck.NextCard());
                 DrawTable();

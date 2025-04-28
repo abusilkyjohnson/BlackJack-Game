@@ -22,13 +22,13 @@ namespace BlackjackClassLibrary
         public virtual void Write(int x, int y, ConsoleColor color)
         {
 
-            int startX = x;
-            int startY = y;
+            int posX = x;
+            int posY = y;
 
             foreach(Card c in _cards)
             {
-                c.WriteC(startX, startY, color);
-                startX += 7;
+                c.WriteC(posX, posY, color);
+                posX += 7;
             }
         }
 
