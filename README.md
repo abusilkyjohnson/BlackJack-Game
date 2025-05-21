@@ -1,4 +1,7 @@
-# Blackjack Game (Console Application)
+<h1>
+  <img src="asset/blackjack_transparent.png" width="100" style="vertical-align: middle; margin-right: 10px;">
+  Blackjack Game
+</h1>
 
 ## Introduction
 
